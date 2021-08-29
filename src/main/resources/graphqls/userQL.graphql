@@ -1,0 +1,32 @@
+type User {
+    idUser: ID!
+    username: String!
+    password: String
+    email: String
+    typeEnabled: TypeEnabled
+    roles: [Role]
+}
+
+extend type Query {
+    getUser(idUser: ID): User!
+    allUsers(offset: Int, count: Int): [User]
+}
+
+extend type Mutation {
+    createUser(user: userInput): User!
+    updateUser(idUser: ID!, user: userInput): User!
+    addUserToRole(idUser: ID!, idRole: ID!): String!
+    deleteUser(idUser: ID!): String
+}
+
+input userInput {
+    username: String,
+    password: String,
+    email: String,
+    idRole: ID,
+    typeEnabled: TypeEnabled
+}
+
+enum TypeEnabled {
+    ACTIVE, INACTIVE, BANNED, SUSPEND
+}

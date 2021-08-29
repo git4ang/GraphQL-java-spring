@@ -16,3 +16,28 @@ spring:
       path: "/h2-console"
       settings:
         web-allow-others: true
+
+graphql:
+  servlet:
+    mapping: "/graphql"
+    subscriptions:
+      websocket:
+        path: "/subscriptions"
+    context-setting: per_query_with_instrumentation
+    exception-handlers-enabled: true
+    cors-enabled: true
+    enabled: true
+  tools:
+    schema-location-pattern: "**/*.graphql"
+  playground:
+    endpoint: /graphql
+    mapping: /playground
+    page-title: "user-javaEE-graphQL"
+    enabled: true
+altair:
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  mapping: /altair
+  page-title: "user-javaEE-altair"
+  enabled: true
